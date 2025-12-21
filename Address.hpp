@@ -6,6 +6,8 @@
 #include <iostream>
 #include <ostream>
 
+class AddressFactory;
+
 // Define the enum for address types
 enum class AddressType {
     House,
@@ -33,18 +35,9 @@ private:
             std::string street, std::string number, 
             std::variant<HouseDetails, ApartmentDetails> details);
 
+    friend class AddressFactory;
+
 public:
-    // Factory method
-    static Address createAddress(
-        std::string country,
-        std::string county,
-        std::string city,
-        std::string street,
-        std::string number,
-        AddressType type,  
-        const std::optional<std::string>& apt_building = std::nullopt,
-        const std::optional<std::string>& apt_floor = std::nullopt,
-        const std::optional<std::string>& apt_number = std::nullopt);
 
     // Getters
     const std::string& getCountry() const;

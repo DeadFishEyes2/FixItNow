@@ -1,42 +1,85 @@
 #include <iostream>
 #include <memory>
 #include "TV.hpp"
+#include "AddressFactory.hpp"
 
 int main() {
-    try {
-        // 1. Create a Diagonal object for the TV
-        // 55 inches
-        Diagonal myDiagonal(55.0, DiagonalUnit::Inches);
+    std::cout << "=== Testing Address Factory ===\n\n";
 
-        // 2. Instantiate a TV object
-        // Brand: Samsung, Model: NeoQLED, Year: 2022, Price: 4500 RON
-        TV myTv("Samsung", "NeoQLED", 2022, 4500, myDiagonal);
+    // Test 1: Create a house address
+    std::cout << "--- House Address ---\n";
+    auto house = AddressFactory::createAddressHouse(
+        "USA",
+        "Los Angeles County",
+        "Los Angeles",
+        "Sunset Boulevard",
+        "1234"
+    );
+    house->log();
+    std::cout << "Type: " << addressTypeToString(house->getType()) << "\n";
+    std::cout << "Is Apartment? " << (house->isApartment() ? "Yes" : "No") << "\n\n";
 
-        std::cout << "--- Testing TV Display ---" << std::endl;
-        myTv.display();
-
-        std::cout << "\n--- Testing Getters ---" << std::endl;
-        std::cout << "Brand: " << myTv.getBrand() << std::endl;
-        std::cout << "Age: " << myTv.getAge() << " years old" << std::endl;
-        std::cout << "Specific Details: " << myTv.getSpecificDetails() << std::endl;
-
-        // 3. Testing Cloning (Virtual Copy)
-        std::cout << "\n--- Testing Clone Method ---" << std::endl;
-        std::unique_ptr<Appliance> clonedTv = myTv.clone();
-        std::cout << "Cloned TV Display:" << std::endl;
-        clonedTv->display();
-
-        // 4. Testing Matches logic
-        std::cout << "\n--- Testing Match Logic ---" << std::endl;
-        bool isMatch = myTv.matches(*clonedTv);
-        std::cout << "Matches 'Samsung NeoQLED TV'? " << (isMatch ? "Yes" : "No") << std::endl;
-
-        bool isWrongMatch = myTv.matches(ApplianceType::Fridge, "LG", "CoolerX");
-        std::cout << "Matches 'LG CoolerX Fridge'? " << (isWrongMatch ? "Yes" : "No") << std::endl;
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    // Test 2: Create an apartment address
+    std::cout << "--- Apartment Address ---\n";
+    auto apartment = AddressFactory::createAddressApartment(
+        "Romania",
+        "Bucharest",
+        "Bucharest",
+        "Calea Victoriei",
+        "42",
+        "Building A",
+        "5th Floor",
+        "Apt 12"
+    );
+    apartment->log();
+    std::cout << "Type: " << addressTypeToString(apartment->getType()) << "\n";
+    std::cout << "Is Apartment? " << (apartment->isApartment() ? "Yes" : "No") << "\n";
+    
+    // Get apartment details
+    if (const auto* details = apartment->getApartmentDetails()) {
+        std::cout << "Apartment Details:\n";
+        std::cout << "  Building: " << details->building << "\n";
+        std::cout << "  Floor: " << details->floor << "\n";
+        std::cout << "  Apartment Number: " << details->apartment_number << "\n";
     }
+    std::cout << "\n";
+
+    // Test 3: Create multiple addresses and store in a vector
+    std::cout << "--- Multiple Addresses ---\n";
+    std::vector<std::unique_ptr<Address>> addresses;
+    
+    addresses.push_back(AddressFactory::createAddressHouse(
+        "UK", "Greater London", "London", "Baker Street", "221B"
+    ));
+    
+    addresses.push_back(AddressFactory::createAddressApartment(
+        "France", "Île-de-France", "Paris", "Champs-Élysées", "100",
+        "Tower B", "10", "Suite 1001"
+    ));
+    
+    addresses.push_back(AddressFactory::createAddressHouse(
+        "Germany", "Bavaria", "Munich", "Marienplatz", "8"
+    ));
+
+    for (size_t i = 0; i < addresses.size(); ++i) {
+        std::cout << "Address " << (i + 1) << ":\n";
+        addresses[i]->log();
+        std::cout << "\n";
+    }
+
+    // Test 4: Test getters
+    std::cout << "--- Testing Getters ---\n";
+    std::cout << "House country: " << house->getCountry() << "\n";
+    std::cout << "House city: " << house->getCity() << "\n";
+    std::cout << "Apartment country: " << apartment->getCountry() << "\n";
+    std::cout << "Apartment city: " << apartment->getCity() << "\n\n";
+
+    // Test 5: Demonstrate ownership transfer
+    std::cout << "--- Ownership Transfer ---\n";
+    std::unique_ptr<Address> movedAddress = std::move(house);
+    std::cout << "Address moved successfully\n";
+    movedAddress->log();
+    // house is now nullptr and cannot be used
 
     return 0;
 }

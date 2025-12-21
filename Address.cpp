@@ -1,10 +1,4 @@
-#include <string>
-#include <variant>
-#include <optional>
-#include <stdexcept>
-#include <iostream>
-#include <ostream>
-#include "Adress.hpp"
+#include "Address.hpp"
 
 //Private constructor
 Address::Address(
@@ -21,44 +15,6 @@ Address::Address(
     number(std::move(number)),
     details(std::move(details)) 
 {}
-
-// Factory method using enum instead of string
-Address Address::createAddress(
-    std::string country,
-    std::string county,
-    std::string city,
-    std::string street,
-    std::string number,
-    AddressType type,  // ✅ Enum instead of string
-    const std::optional<std::string>& apt_building,
-    const std::optional<std::string>& apt_floor,
-    const std::optional<std::string>& apt_number)
-{
-    switch (type) {  // Cleaner than if-else for enums
-        case AddressType::Apartment: {
-            if (!apt_building || !apt_floor || !apt_number) {
-                throw std::invalid_argument(
-                    "Apartment address requires building, floor, and number"
-                );
-            }
-            ApartmentDetails apt{*apt_building, *apt_floor, *apt_number};
-            return Address(
-                std::move(country), std::move(county), std::move(city),
-                std::move(street), std::move(number), std::move(apt)
-            );
-        }
-        case AddressType::House: {
-            HouseDetails house{};
-            return Address(
-                std::move(country), std::move(county), std::move(city),
-                std::move(street), std::move(number), std::move(house)
-            );
-        }
-    }
-    // If you add a new enum value and forget to handle it, 
-    // compiler will warn (with -Wswitch)
-    throw std::invalid_argument("Unknown address type");
-}
 
 // Getters
 const std::string& Address::getCountry() const {
