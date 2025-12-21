@@ -10,15 +10,15 @@ std::string Diagonal::toString() const {
 
 //private constructor accessed by the ApplianceFactory class through the createApplianceTV method
 TV::TV(
-    const std::string& brand,
-    const std::string& model,
+    std::string brand,
+    std::string model,
     int year,
     int price,
-    const Diagonal& diagonal)
+    Diagonal diagonal)
 :   Appliance(
         ApplianceType::TV,
-        brand,
-        model,
+        std::move(brand),
+        std::move(model),
         year,
         price),
     diagonal(std::move(diagonal))
@@ -33,7 +33,7 @@ std::string TV::getSpecificDetails() const {
 //Overwrites
 void TV::display() const {
     Appliance::display();
-    std::cout << "Diagonal: " << diagonal.toString() << "\n";
+    std::cout << getSpecificDetails() << "\n";
 }
 
 std::unique_ptr<Appliance> TV::clone() const {

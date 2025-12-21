@@ -15,3 +15,29 @@ std::unique_ptr<Appliance> ApplianceFactory::createApplianceTV(
         year, price, std::move(diagonal)
     ));
 };
+
+std::unique_ptr<Appliance> ApplianceFactory::createApplianceFridge(
+    std::string brand,
+    std::string model,
+    int year,
+    int price,
+    bool has_freezer)
+{
+    return std::make_unique<Fridge> (Fridge(
+        std::move(brand), std::move(model),
+        year, price, has_freezer
+    ));
+};
+
+std::unique_ptr<Appliance> ApplianceFactory::createApplianceWashingMachine(
+    std::string brand,
+    std::string model,
+    int year,
+    int price,
+    double capacity)
+{
+    return std::make_unique<WashingMachine> (WashingMachine(
+        std::move(brand), std::move(model),
+        year, price, capacity
+    ));
+};

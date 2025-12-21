@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Appliance.hpp"
 
 //Declaring the ApplianceFactory here so it can be a friend function 
@@ -33,8 +34,8 @@ private:
     Diagonal diagonal;
 
     // Constructor - will be used in the factory method
-    TV(const std::string& brand, const std::string& model,
-        int year, int price, const Diagonal& diagonal);
+    TV(std::string brand, std::string model,
+        int year, int price, Diagonal diagonal);
 
     friend class ApplianceFactory;
 
@@ -48,5 +49,5 @@ public:
     //Overwrites
     void display() const override;
     
-    std::unique_ptr<Appliance> clone() const;
+    std::unique_ptr<Appliance> clone() const override;
 };

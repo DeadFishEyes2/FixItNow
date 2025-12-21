@@ -12,6 +12,8 @@
 #include <algorithm>
 
 #include "TV.hpp"
+#include "Fridge.hpp"
+#include "WashingMachine.hpp"
 
 class ApplianceFactory {
 private:
@@ -26,5 +28,21 @@ public:
         int price,
         double diagonal_value,
         DiagonalUnit diagonal_unit
+    );
+
+    static std::unique_ptr<Appliance> createApplianceFridge(
+        std::string brand,
+        std::string model,
+        int year,
+        int price,
+        bool has_freezer
+    );
+
+    static std::unique_ptr<Appliance> createApplianceWashingMachine(
+        std::string brand,
+        std::string model,
+        int year,
+        int price,
+        double capacity
     );
 };

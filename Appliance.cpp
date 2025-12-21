@@ -26,13 +26,13 @@ std::string applianceTypeToString(ApplianceType type) {
 //Protected constructor
 Appliance::Appliance(
     ApplianceType type,
-    const std::string& brand,
-    const std::string& model,
+    std::string brand,
+    std::string model,
     int year,
     int price)
 :   type(type),
-    brand(brand), 
-    model(model), 
+    brand(std::move(brand)), 
+    model(std::move(model)), 
     year_of_manufacture(year), 
     catalog_price(price) 
 {}

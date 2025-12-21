@@ -44,8 +44,8 @@ protected:
     // Protected constructor
     Appliance(
         ApplianceType type,
-        const std::string& brand,
-        const std::string& model,
+        std::string brand,
+        std::string model,
         int year_of_manufacture,
         int catalog_price);
 
