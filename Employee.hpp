@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -12,8 +13,6 @@ enum class EmployeeType{
 };
 
 class Employee{
-    private:
-        Employee() = default;
     protected:
         const int id;
         std::string first_name;
@@ -23,6 +22,18 @@ class Employee{
         Address residence;
         int salary;
         EmployeeType type;
-    public:
 
+        static const int BASE_SALARY = 4000;
+        static const int TRANSPORT_BONUS = 400;
+
+    public:
+        
+        int getNumYearsWorked() const;
+
+        //Calculate Bonuses
+        int calculateLoyaltyBonus() const;
+        int calculateTransportBonus() const;
+
+        virtual void setSalary() = 0;
+        virtual int getSalary() const = 0;
 };

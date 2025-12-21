@@ -23,7 +23,7 @@ Address::Address(
 {}
 
 // Factory method using enum instead of string
-Address Address::fromData(
+Address Address::createAddress(
     std::string country,
     std::string county,
     std::string city,

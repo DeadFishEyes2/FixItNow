@@ -34,8 +34,8 @@ private:
             std::variant<HouseDetails, ApartmentDetails> details);
 
 public:
-    // Factory method using enum instead of string
-    static Address fromData(
+    // Factory method
+    static Address createAddress(
         std::string country,
         std::string county,
         std::string city,
