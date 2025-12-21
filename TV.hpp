@@ -1,6 +1,9 @@
 #pragma once
 #include "Appliance.hpp"
 
+//Declaring the ApplianceFactory here so it can be a friend function 
+class ApplianceFactory;
+
 // ============================================================================
 // TV SPECIFIC DETAILS
 // ============================================================================
@@ -26,12 +29,16 @@ struct Diagonal {
 // ============================================================================
 
 class TV: public Appliance{
-    private:
-        Diagonal diagonal;
-    public:
+private:
+    Diagonal diagonal;
+
     // Constructor - will be used in the factory method
     TV(const std::string& brand, const std::string& model,
-       int year, int price, const Diagonal& diagonal);
+        int year, int price, const Diagonal& diagonal);
+
+    friend class ApplianceFactory;
+
+public:
     
     //Specific details
     const Diagonal& getDiagonal() const;

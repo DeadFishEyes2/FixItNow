@@ -10,6 +10,9 @@
 #include <sstream>
 #include <algorithm>
 
+//Declaring the ApplianceFactory here so it can be a friend function 
+class ApplianceFactory;
+
 // ============================================================================
 // APPLIANCE TYPE ENUM
 // ============================================================================
@@ -36,11 +39,17 @@ protected:
     std::string brand;            // "Samsung", "LG"
     std::string model;            // "Frost200", "SmartTV55"
     int year_of_manufacture;      // 2020
-    int catalog_price;             // 1500
+    int catalog_price;            // 1500
     
     // Protected constructor
-    Appliance(ApplianceType type, const std::string& brand, const std::string& model,
-              int year, int price);
+    Appliance(
+        ApplianceType type,
+        const std::string& brand,
+        const std::string& model,
+        int year_of_manufacture,
+        int catalog_price);
+
+    friend class ApplianceFactory;
     
 public:
     virtual ~Appliance() = default;

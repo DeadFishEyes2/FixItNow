@@ -8,6 +8,7 @@ std::string Diagonal::toString() const {
     return std::to_string(value) + (unit == DiagonalUnit::Centimeters ? " cm" : " inches");
 }
 
+//private constructor accessed by the ApplianceFactory class through the createApplianceTV method
 TV::TV(
     const std::string& brand,
     const std::string& model,
@@ -20,7 +21,7 @@ TV::TV(
         model,
         year,
         price),
-    diagonal(diagonal)
+    diagonal(std::move(diagonal))
 {}
 
 const Diagonal& TV::getDiagonal() const { return diagonal; }

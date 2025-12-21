@@ -19,28 +19,12 @@ private:
     
 public:
     // Create appliance from parameters
-    static std::unique_ptr<Appliance> createAppliance(
-        ApplianceType type,
-        const std::string& brand,
-        const std::string& model,
+    static std::unique_ptr<Appliance> createApplianceTV(
+        std::string brand,
+        std::string model,
         int year,
         int price,
-        // Type-specific parameters
-        const std::optional<bool>& hasFreezer = std::nullopt,
-        const std::optional<Diagonal>& diagonal = std::nullopt,
-        const std::optional<int>& capacity = std::nullopt
-    ) {
-        switch (type) {
-        
-            case ApplianceType::TV: {
-                if (!diagonal.has_value()) {
-                    throw std::invalid_argument("TV requires diagonal specification");
-                }
-                return std::make_unique<TV>(brand, model, year, price, diagonal.value());
-            }
-            
-            default:
-                throw std::invalid_argument("Unknown appliance type");
-        }
-    }
+        double diagonal_value,
+        DiagonalUnit diagonal_unit
+    );
 };
