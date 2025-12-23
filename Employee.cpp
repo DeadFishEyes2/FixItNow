@@ -31,3 +31,28 @@ int Employee::calculateLoyaltyBonus() const{
     int loyaltyPeriods = yearsWorked / 3;
     return BASE_SALARY * 0.05 * loyaltyPeriods; 
 }
+
+void Employee::setSalary(){
+    int loyalty_bonus = calculateLoyaltyBonus();
+    int transport_bonus = calculateTransportBonus();
+    salary = BASE_SALARY + loyalty_bonus + transport_bonus;
+}
+
+int Employee::getSalary() const { return salary; }
+
+Employee::Employee(
+    const int id,
+    std::string first_name,
+    std::string last_name,
+    std::string CNP,
+    std::chrono::year_month_day date_of_hiring,
+    Address residence,
+    EmployeeType type)
+:   id(id),
+    first_name(std::move(first_name)),
+    last_name(std::move(last_name)),
+    CNP(std::move(CNP)),
+    date_of_hiring(std::move(date_of_hiring)),
+    residence(std::move(residence)),
+    type(type)
+{}

@@ -3,7 +3,7 @@
 #include "Appliance.hpp"
 
 //Declaring the ApplianceFactory here so it can be a friend function 
-class ApplicanceFactory;
+class ApplianceFactory;
 
 // ============================================================================
 // WashingMachine CLASS
