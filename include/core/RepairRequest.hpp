@@ -26,7 +26,7 @@ class RepairRequest{
 private:
     int id;
     std::unique_ptr<Appliance> appliance;
-    std::string timestamp;
+    std::chrono::system_clock::time_point timestamp;
     int complexity;
     int repair_duration;
     int remaining_time;
@@ -38,7 +38,7 @@ private:
     RepairRequest(
         int id,
         std::unique_ptr<Appliance> appliance,
-        std::string timestamp,
+        std::chrono::system_clock::time_point timestamp,
         int complexity,
         int repair_duration,
         int remaining_time,
@@ -61,6 +61,10 @@ public:
     //Setters
     void setTechnicianId(int new_technician_id);
     void setRemainingTime(int new_remaining_time);
+    void setStatus(Status new_status);
+
+    //Checkers
+    bool isCompleted();
 
     bool tick();
 };

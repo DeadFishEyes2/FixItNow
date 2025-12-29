@@ -3,7 +3,7 @@
 RepairRequest::RepairRequest(
     int id,
     std::unique_ptr<Appliance> appliance,
-    std::string timestamp,
+    std::chrono::system_clock::time_point timestamp,
     int complexity,
     int repair_duration,
     int remaining_time,
@@ -11,7 +11,7 @@ RepairRequest::RepairRequest(
     int receptionist_id)
 :   id(id),
     appliance(std::move(appliance)),
-    timestamp(std::move(timestamp)),
+    timestamp(timestamp),
     complexity(complexity),
     repair_duration(repair_duration),
     remaining_time(remaining_time),
@@ -31,5 +31,16 @@ int RepairRequest::getTechnicianId() const { return technician_id; }
 //Setters
 void RepairRequest::setTechnicianId(int new_technician_id) { technician_id = new_technician_id; }
 void RepairRequest::setRemainingTime(int new_remaining_time) { remaining_time = new_remaining_time; }
+void RepairRequest::setStatus(Status new_status) { status = new_status; }
 
-bool RepairRequest::tick() { return remaining_time--; }
+//Checkers
+bool RepairRequest::isCompleted() { return status == Status::Completed; }
+
+bool RepairRequest::tick() { 
+    remaining_time--;
+    if (remaining_time == 0){
+        status = Status::Completed;
+    }
+    return remaining_time; 
+}
+

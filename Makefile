@@ -2,24 +2,21 @@
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra
 
-# Include Directories
-INCLUDES = -Iinclude/core -Iinclude/factory
+# Directories
+SRC_DIR = src
+BUILD_DIR = build
+INC_DIR = include
 
-# Source Files
-SRC = src/main.cpp \
-      src/core/Address.cpp \
-      src/core/Appliance.cpp \
-      src/core/Employee.cpp \
-      src/core/Fridge.cpp \
-      src/core/RepairRequest.cpp \
-      src/core/TV.cpp \
-      src/core/WashingMachine.cpp \
-      src/factory/AddressFactory.cpp \
-      src/factory/ApplianceFactory.cpp \
-      src/factory/RepairRequestFactory.cpp
+# Automatically find all subdirectories in include/ to use for -I flags
+# This allows VS Code to find headers in core/, factory/, and manager/
+INCLUDE_DIRS = $(shell find $(INC_DIR) -type d | sed 's/^/-I/')
 
-# Object Files
-OBJ = $(SRC:.cpp=.o)
+# Automatically find all .cpp files in src/ and its subdirectories
+# This ensures EmployeeFactory.cpp and others are included in the project
+SRC = $(shell find $(SRC_DIR) -name "*.cpp")
+
+# Object Files mapping: transforms 'src/path/file.cpp' to 'build/path/file.o'
+OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRC))
 
 # Output Executable
 TARGET = app
@@ -27,17 +24,18 @@ TARGET = app
 # Default Rule
 all: $(TARGET)
 
-# Link Object Files to create Executable
+# Link Object Files to create the Executable
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
 
-# Compile .cpp files to .o files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+# Compile .cpp files to .o files in the build directory
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDE_DIRS) -c $< -o $@
 
 # Clean Build Files
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -rf $(BUILD_DIR) $(TARGET)
 
 # Run the application
 run: all

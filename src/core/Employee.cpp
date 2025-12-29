@@ -56,3 +56,5 @@ Employee::Employee(
     residence(std::move(residence)),
     type(type)
 {}
+
+int Employee::getId() const { return id; };

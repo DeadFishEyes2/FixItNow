@@ -7,7 +7,6 @@ RepairRequestFactory::RepairRequestFactory(int saved_next_id) { initializeFactor
 
 std::unique_ptr<RepairRequest> RepairRequestFactory::createRepairRequest(
     std::unique_ptr<Appliance> appliance,
-    std::string timestamp,
     int complexity,
     int remaining_time,
     int receptionist_id)
@@ -16,9 +15,13 @@ std::unique_ptr<RepairRequest> RepairRequestFactory::createRepairRequest(
     int price = (appliance->getAge())*(appliance->getCatalogPrice());
 
     return std::make_unique<RepairRequest> (RepairRequest(
-        next_id++, std::move(appliance),
-        std::move(timestamp), complexity,
-        repair_duration, remaining_time,
-        price, receptionist_id
+        next_id++,
+        std::move(appliance),
+        std::chrono::system_clock::now(),
+        complexity,
+        repair_duration,
+        remaining_time,
+        price,
+        receptionist_id
     ));
 }

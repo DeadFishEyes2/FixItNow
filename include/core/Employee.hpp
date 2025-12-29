@@ -1,9 +1,11 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <memory>
 #include <chrono>
 #include <string>
+
 #include "Address.hpp"
 
 enum class EmployeeType{
@@ -43,6 +45,10 @@ public:
     int calculateLoyaltyBonus() const;
     int calculateTransportBonus() const;
 
+    //Getters
+    virtual int getSalary() const;
+    int getId() const;
+
+    //Setters
     virtual void setSalary();
-    int getSalary() const;
 };

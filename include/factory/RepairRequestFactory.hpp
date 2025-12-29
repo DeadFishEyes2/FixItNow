@@ -12,7 +12,6 @@ public:
 
     std::unique_ptr<RepairRequest> createRepairRequest(
         std::unique_ptr<Appliance> appliance,
-        std::string timestamp,
         int complexity,
         int remaining_time,
         int receptionist_id
