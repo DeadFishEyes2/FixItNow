@@ -1,0 +1,21 @@
+ID,Type,FirstName,LastName,CNP,DateOfHiring,Country,County,City,Street,Number,AddressType,AptBuilding,AptFloor,AptNumber,Skills,ReceivedRequests
+1,Technician,Ion,Popescu,1850623401234,2018-03-15,Romania,Bucharest,Bucharest,Victoriei,45,House,,,,Fridge:Samsung;Fridge:LG;TV:Samsung,
+2,Technician,Maria,Ionescu,2920815402345,2019-06-20,Romania,Ilfov,Voluntari,Mihai Bravu,12,Apartment,B,3,15,TV:LG;TV:Samsung;WashingMachine:Bosch,
+3,Technician,Andrei,Georgescu,1780912403456,2020-01-10,Romania,Bucharest,Bucharest,Unirii,78,Apartment,A,5,22,Fridge:Arctic;WashingMachine:Samsung;WashingMachine:LG,
+4,Technician,Elena,Dumitrescu,2890504404567,2019-11-05,Romania,Ilfov,Popesti-Leordeni,Libertatii,34,House,,,,TV:Philips;Fridge:Bosch;WashingMachine:Whirlpool,
+5,Technician,Mihai,Constantin,1751201405678,2017-08-22,Romania,Bucharest,Bucharest,Romana,156,Apartment,C,7,45,Fridge:Samsung;Fridge:Whirlpool;TV:LG,
+6,Technician,Alexandra,Popa,2880327406789,2021-02-14,Romania,Ilfov,Bragadiru,Pacii,89,House,,,,WashingMachine:Bosch;WashingMachine:Samsung;TV:Samsung,
+7,Technician,Cristian,Stanciu,1790618407890,2018-09-30,Romania,Bucharest,Bucharest,Calea Mosilor,234,Apartment,D,2,8,Fridge:LG;TV:Philips;WashingMachine:Arctic,
+8,Technician,Diana,Matei,2900725408901,2020-05-18,Romania,Ilfov,Chitila,Stefan cel Mare,67,House,,,,TV:Samsung;TV:LG;Fridge:Samsung,
+9,Receptionist,Gabriela,Radu,2850912409012,2019-03-12,Romania,Bucharest,Bucharest,Pache Protopopescu,91,Apartment,A,4,19,,1;3;5;7;9;11;13;15
+10,Receptionist,Vlad,Marin,1880506410123,2020-07-25,Romania,Bucharest,Bucharest,Floreasca,145,House,,,,,"2;4;6;8;10;12;14"
+11,Receptionist,Laura,Vasile,2920218411234,2021-01-08,Romania,Ilfov,Otopeni,Aviatorilor,23,Apartment,B,1,5,,16;17;18;19;20
+12,Supervisor,Stefan,Enache,1770830412345,2016-11-20,Romania,Bucharest,Bucharest,Dorobanti,178,Apartment,C,6,31,,
+13,Supervisor,Ioana,Stoica,2860415413456,2017-04-15,Romania,Bucharest,Bucharest,Primaverii,56,House,,,,
+14,Technician,Radu,Ciobanu,1820723414567,2019-12-01,Romania,Ilfov,Magurele,Splaiul Independentei,12,House,,,,Fridge:Bosch;TV:Philips;WashingMachine:Whirlpool,
+15,Technician,Ana,Nistor,2910604415678,2020-09-10,Romania,Bucharest,Bucharest,Bulevardul Unirii,203,Apartment,E,8,42,TV:LG;Fridge:Arctic;WashingMachine:Samsung,
+16,Receptionist,Dan,Lungu,1830517416789,2018-06-28,Romania,Bucharest,Bucharest,Calea Victoriei,88,Apartment,F,3,12,,21;22;23;24
+17,Technician,Carmen,Badea,2870920417890,2021-03-22,Romania,Ilfov,Pantelimon,Republica,45,House,,,,Fridge:Samsung;Fridge:LG;TV:Samsung;WashingMachine:Bosch,
+18,Technician,George,Ilie,1760308418901,2017-10-14,Romania,Bucharest,Bucharest,Stefan cel Mare,312,Apartment,A,9,56,TV:Philips;WashingMachine:LG;Fridge:Whirlpool,
+19,Technician,Raluca,Barbu,2900112419012,2019-08-05,Romania,Ilfov,Clinceni,Olteniei,78,House,,,,WashingMachine:Samsung;TV:LG;Fridge:Arctic,
+20,Receptionist,Catalin,Florea,1840826420123,2020-02-17,Romania,Bucharest,Bucharest,Aviatorilor,167,Apartment,B,5,28,,25;26;27;28;29;30

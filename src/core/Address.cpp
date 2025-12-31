@@ -17,12 +17,11 @@ Address::Address(
 {}
 
 // Getters
-const std::string& Address::getCountry() const {
-    return country;
-}
-const std::string& Address::getCity() const {
-    return city;
-}
+const std::string& Address::getCountry() const { return country; }
+const std::string& Address::getCity() const { return city; }
+const std::string& Address::getCounty() const { return county; }
+const std::string& Address::getStreet() const { return street; }
+const std::string& Address::getNumber() const { return number; }
 
 // Return the type as enum
 AddressType Address::getType() const {

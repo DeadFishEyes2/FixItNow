@@ -17,3 +17,8 @@ Supervisor::Supervisor(
         EmployeeType::Supervisor
     )
 {}
+
+void Supervisor::setSalary(){
+
+    salary = (BASE_SALARY + calculateTransportBonus() + calculateLoyaltyBonus())*1.2;
+}

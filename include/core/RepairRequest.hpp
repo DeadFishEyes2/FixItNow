@@ -57,6 +57,10 @@ public:
     Status getStatus() const;
     int getReceptionistId() const;
     int getTechnicianId() const;
+    const std::chrono::system_clock::time_point& getTimestamp() const;
+    int getComplexity() const;
+    int getRepairDuration() const;
+    int getRemainingTime() const;
 
     //Setters
     void setTechnicianId(int new_technician_id);

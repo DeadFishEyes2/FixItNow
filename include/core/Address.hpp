@@ -42,6 +42,9 @@ public:
     // Getters
     const std::string& getCountry() const;
     const std::string& getCity() const;
+    const std::string& getCounty() const;
+    const std::string& getStreet() const;
+    const std::string& getNumber() const;
     
     // Return the type as enum
     AddressType getType() const;
@@ -56,3 +59,4 @@ public:
 
 AddressType stringToAddressType(const std::string& str);
 std::string addressTypeToString(AddressType type);
+

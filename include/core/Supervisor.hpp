@@ -12,4 +12,7 @@ private:
         Address residence);
 
     friend class EmployeeFactory;
+
+public:
+    void setSalary() override;
 };

@@ -25,3 +25,41 @@ std::unique_ptr<RepairRequest> RepairRequestFactory::createRepairRequest(
         receptionist_id
     ));
 }
+
+std::unique_ptr<RepairRequest> RepairRequestFactory::createRepairRequestFromCSV(
+    int id,
+    std::unique_ptr<Appliance> appliance,
+    std::chrono::system_clock::time_point timestamp,
+    int complexity,
+    int repair_duration,
+    int remaining_time,
+    int price,
+    Status status,
+    int receptionist_id,
+    int technician_id
+) {
+    // Create the repair request with all fields from CSV
+    auto request = std::unique_ptr<RepairRequest>(new RepairRequest(
+        id,
+        std::move(appliance),
+        timestamp,
+        complexity,
+        repair_duration,
+        remaining_time,
+        price,
+        receptionist_id
+    ));
+    
+    // Set additional fields that aren't in the constructor
+    request->setStatus(status);
+    if (technician_id != 0) {
+        request->setTechnicianId(technician_id);
+    }
+    
+    // Update next_id if this id is >= current next_id
+    if (id >= next_id) {
+        next_id = id + 1;
+    }
+    
+    return request;
+}

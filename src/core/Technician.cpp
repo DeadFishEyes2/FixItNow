@@ -63,7 +63,6 @@ void Technician::tick() {
     }
 }
 
-// Add these to Technician.cpp
 void Technician::setSalary() {
     Employee::setSalary(); // Start with base salary logic
     salary += calculatePerformanceBonus();
@@ -73,12 +72,41 @@ int Technician::getSalary() const {
     return salary;
 }
 
-int Technician::calculatePerformanceBonus() const {
-    // Placeholder implementation to satisfy the linker
-    return 0; 
+std::vector<int> Technician::getCompletedRequests(std::chrono::year_month interval_start, std::chrono::year_month interval_end) const {
+
+    auto start_tp = std::chrono::sys_days{interval_start / 1};
+    
+    auto end_tp = std::chrono::sys_days{(interval_end + std::chrono::months{1}) / 1};
+
+    return ServiceManager::getInstance().filter(
+        Status::Completed,
+        start_tp,
+        end_tp,
+        this->getId(),
+        0 // Ignore receptionist filter
+    );
 }
 
-std::vector<int> Technician::getCompletedRequests(std::chrono::year_month interval_start, std::chrono::year_month interval_end) {
-    // Placeholder implementation to satisfy the linker
-    return {};
+int Technician::calculatePerformanceBonus() const {
+
+    auto now = std::chrono::system_clock::now();
+    auto today = std::chrono::year_month_day{std::chrono::floor<std::chrono::days>(now)};
+    
+    auto current_month = today.year() / today.month();
+    auto last_month = current_month - std::chrono::months{1};
+
+    std::vector<int> completed_ids = getCompletedRequests(last_month, last_month);
+
+    int performance_bonus = 0;
+
+    for (auto completed_id : completed_ids){
+        performance_bonus += (ServiceManager::getInstance().findRepairRequestById(completed_id)->getPrice())*0.02;
+    }
+
+    return performance_bonus;
 }
+
+int Technician::getActiveRequestsCount() const { return active_request_ids.size(); }
+const std::vector<int> Technician::getActiveRequests() const { return active_request_ids; }
+
+const std::vector<Skill>& Technician::getSkills() const { return skills; }

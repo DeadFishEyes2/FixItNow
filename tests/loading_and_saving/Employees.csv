@@ -1,0 +1,3 @@
+ID,Type,FirstName,LastName,CNP,DateOfHiring,Country,County,City,Street,Number,AddressType,AptBuilding,AptFloor,AptNumber,Skills,ReceivedRequests
+1,Technician,John,Doe,1234567890123,2020-01-15,Romania,Bucharest,Bucharest,Main St,10,House,,,,Fridge:Samsung;TV:LG,
+2,Receptionist,Jane,Smith,9876543210987,2021-03-20,Romania,Ilfov,Voluntari,Second Ave,25,Apartment,A,3,12,,5;7;9

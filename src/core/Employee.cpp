@@ -58,3 +58,14 @@ Employee::Employee(
 {}
 
 int Employee::getId() const { return id; };
+
+const std::string& Employee::getFirstName() const { return first_name; }
+const std::string& Employee::getLastName() const { return last_name; }
+EmployeeType Employee::getType() const { return type; }
+
+const std::string& Employee::getCNP() const { return CNP; }
+const std::chrono::year_month_day& Employee::getDateOfHiring() const { return date_of_hiring; }
+const Address& Employee::getResidence() const { return residence; }
+
+void Employee::changeFirstName(std::string new_first_name) { first_name = new_first_name; }
+void Employee::changeLastName(std::string new_last_name) { last_name = new_last_name; }

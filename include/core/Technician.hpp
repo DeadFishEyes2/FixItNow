@@ -36,14 +36,17 @@ private:
 
 public:
 
-    std::vector<int> getCompletedRequests(std::chrono::year_month interval_start, std::chrono::year_month interval_end);
+    std::vector<int> getCompletedRequests(std::chrono::year_month interval_start, std::chrono::year_month interval_end) const;
     int calculatePerformanceBonus() const;
 
     void setSalary() override;
     int getSalary() const override;
+    const std::vector<Skill>& getSkills() const;
     bool canRepair(const Appliance& appliance) const;
     void addSkill(ApplianceType type, std::string brand);
     void addActiveRequest(int request_id);
+    int getActiveRequestsCount() const;
+    const std::vector<int> getActiveRequests() const;
 
     void tick();
 };

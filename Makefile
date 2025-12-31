@@ -1,6 +1,7 @@
 # Compiler and Flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Wextra
+CXXFLAGS = -std=c++20 -Wall -Wextra -pthread
+LDFLAGS = -lncurses
 
 # Directories
 SRC_DIR = src
@@ -26,7 +27,7 @@ all: $(TARGET)
 
 # Link Object Files to create the Executable
 $(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
 # Compile .cpp files to .o files in the build directory
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
